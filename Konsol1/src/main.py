@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from functions.filter_7_check_white_ratio import filter_7_check_white_ratio
 from functions.filter_5_check_paralel_horizontal_thresholds import filter_5_check_paralel_horizontal_thresholds
 from functions.filter_6_check_size_ratio import filter_6_check_size_ratio
 from functions.filter_4_check_paralel_thresholds import filter_4_check_paralel_thresholds
@@ -135,6 +136,13 @@ def detect_cylinder(image):
     
     # Filter 7
     #noktalar arasında kalan beyaz rengin oranı diğer renklere üstün olmalı
+    filtered_permutations_7 = []
+    for coords in filtered_permutations_6:
+        # coords = [[0, 0], [1, 1], [2, 2], [3, 3]]
+        # coords[0] = [0, 0]
+        filter_result_7 = filter_7_check_white_ratio(coords, 1,1)
+        if filter_result_7 is True:
+            filtered_permutations_7.append(coords)
 
     after_filter_image = np.copy(preprocessed_image)
 
