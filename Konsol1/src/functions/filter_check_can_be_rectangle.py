@@ -1,4 +1,5 @@
 #c1 c2 c3 c4 sırasıyla olacak
+#burada hata olabilir hocaya sor
 def filter_check_can_be_rectangle(coords):
     c1, c2, c3, c4 = coords
     x1, y1 = c1

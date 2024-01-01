@@ -91,18 +91,20 @@ def detect_cylinder(image):
         # coords[0] = [0, 0]
         distances = calculate_distances(coords)
         normalized_distances = normalize_distances(distances, INPUT_WIDTH)
-        filter_result_2 = filter_2_check_thresholds(normalized_distances, 0.5, 1.5, 0.5, 1.5)
+        filter_result_2 = filter_2_check_thresholds(normalized_distances, 0.4, 0.9, 0.2, 0.95)
         if filter_result_2 is True:
             filtered_permutations_2.append(coords) 
-            
+
     # Filter 3
     filtered_permutations_3 = []
     for coords in filtered_permutations_2:
         # coords = [[0, 0], [1, 1], [2, 2], [3, 3]]
         # coords[0] = [0, 0]
-        filter_result_3 = filter_3_check_direction_thresholds(coords, 0.5, 1.5)
+        filter_result_3 = filter_3_check_direction_thresholds(coords, 25, 80)
         if filter_result_3 is True:
             filtered_permutations_3.append(coords) 
+
+    print(filtered_permutations_3)
 
     # Filter 4
     filtered_permutations_4 = []
@@ -121,6 +123,7 @@ def detect_cylinder(image):
         filter_result_5 = filter_5_check_paralel_horizontal_thresholds(coords, 1)
         if filter_result_5 is True:
             filtered_permutations_5.append(coords) 
+    
 
     # Filter 6
     filtered_permutations_6 = []
@@ -157,7 +160,7 @@ def detect_cylinder(image):
     result_image_with_edges = draw_edges(image, edges)
     
     # Köşeleri işaretle
-    draw_corners(result_image_with_edges, corners)
+    draw_corners(result_image_with_edges, filtered_permutations_6)
 
     # Sonucu göster
     cv2.imshow('Cylinder Detection Result', result_image_with_edges)
@@ -165,7 +168,7 @@ def detect_cylinder(image):
     cv2.destroyAllWindows()
 
 # Görüntüyü oku
-image = cv2.imread('C:\\Users\\tkaan\\Desktop\\yandan kirpilmis\\deneme.png')
+image = cv2.imread('C:\\Users\\tkaan\\Desktop\\Python-Programming-Project\\Konsol1\\input\\kapi.png')
 image = cv2.resize(image, (INPUT_WIDTH, INPUT_WIDTH))
 
 # Silindir tespiti
