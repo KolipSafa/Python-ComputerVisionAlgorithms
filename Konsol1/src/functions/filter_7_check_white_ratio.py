@@ -1,6 +1,61 @@
+import cv2
+import numpy as np
+
 def filter_7_check_white_ratio(coords, image):
-    # coords = [[0, 0], [1, 1], [2, 2], [3, 3]]
-    # coords[0] = [0, 0]
-    # image = cv2.imread("test_images/1.jpg")
-    # image = cv2.imread("test_images/2.jpg")
-    return True
+    c1, c2, c3, c4 = coords
+    x1, y1 = c1
+    x2, y2 = c2
+    x3, y3 = c3
+    x4, y4 = c4
+
+    # Koordinatları düzenle
+    x_coords = [x1, x2, x3, x4]
+    y_coords = [y1, y2, y3, y4]
+
+    x_min, x_max = min(x_coords), max(x_coords)
+    y_min, y_max = min(y_coords), max(y_coords)
+
+    # Dikdörtgenin içindeki pikselleri seç
+    roi = image[y_min:y_max, x_min:x_max]
+
+    # Beyaz renk için alt ve üst sınır
+    lower_white = np.array([200, 200, 200], dtype=np.uint8)
+    upper_white = np.array([255, 255, 255], dtype=np.uint8)
+
+    # Belirli bir renk aralığındaki pikselleri maskele
+    white_mask = cv2.inRange(roi, lower_white, upper_white)
+
+    # Beyaz olan pikselleri say
+    white_pixels = np.count_nonzero(white_mask)
+
+    # ROI içindeki toplam piksel sayısı
+    total_pixels = roi.shape[0] * roi.shape[1]
+
+    # Beyaz piksellerin oranı
+    white_ratio = white_pixels / total_pixels
+
+    # %80 beyaz olup olmadığını kontrol et
+    if white_ratio >= 0.8:
+        return True
+    else:
+        return False
+
+# # Resmi yükle
+# image = cv2.imread('resim.png')  # Resmin dosya adını uygun şekilde değiştir
+
+# # Koordinatları tanımla
+# c1 = (x1, y1)
+# c2 = (x2, y2)
+# c3 = (x3, y3)
+# c4 = (x4, y4)
+
+# # Koordinatları birleştir
+# coords = (c1, c2, c3, c4)
+
+# # Fonksiyonu çağır ve sonucu kontrol et
+# result = filter_7_check_white_ratio(coords, image)
+
+# if result:
+#     print("ROI içindeki piksellerin %80'i beyazdır.")
+# else:
+#     print("ROI içindeki piksellerin %80'i beyaz değildir.")

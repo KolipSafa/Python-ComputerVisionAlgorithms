@@ -173,7 +173,7 @@ def detect_cylinder(image):
     cv2.destroyAllWindows()
 
 # Görüntüyü oku
-image = cv2.imread('C:\\Users\\tkaan\\Desktop\\yandan kirpilmis\\deneme.png')
+image = cv2.imread('C:\\Users\\talha\\OneDrive\\Masaüstü\\yandan kirpilmis\\deneme.png')
 image = cv2.resize(image, (INPUT_WIDTH, INPUT_WIDTH))
 
 # Silindir tespiti
