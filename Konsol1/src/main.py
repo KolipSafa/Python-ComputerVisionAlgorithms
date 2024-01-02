@@ -107,6 +107,7 @@ def detect_cylinder(image):
 
     print(filtered_permutations_3)
 
+    return
     # Filter 4
     filtered_permutations_4 = []
     for coords in filtered_permutations_3:
@@ -176,8 +177,8 @@ def detect_cylinder(image):
     cv2.destroyAllWindows()
 
 # Görüntüyü oku
-image = cv2.imread('')
-# dosya yolu C:\\Users\\talha\\OneDrive\\Masaüstü\\yandan kirpilmis\\deneme.png
+image = cv2.imread('C:\\Users\\talha\\OneDrive\\Masaüstü\\Python-Programming-Lecture-Project\\Konsol1\\input\\kapi.png')
+# dosya yolu C:\\Users\\talha\\OneDrive\\Masaüstü\\Python-Programming-Lecture-Project\\Konsol1\\input\\kapi.png
 image = cv2.resize(image, (INPUT_WIDTH, INPUT_WIDTH))
 
 # Silindir tespiti
