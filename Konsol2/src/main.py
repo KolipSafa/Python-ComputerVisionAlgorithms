@@ -51,9 +51,10 @@ def main(image_path):
 
     # Sonucu göster
     cv2.imshow('Detected Lines', result_image)
+    cv2.imwrite("C:\\Users\\talha\\OneDrive\\Masaüstü\\Python-Programming-Lecture-Project\\Konsol2\\output\\result_deneme.png", result_image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    image_path = 'C:\\Users\\talha\\OneDrive\\Masaüstü\\Python-Programming-Lecture-Project\\Konsol1\\output\\result_deneme.png'  # Görüntü dosya yolu
+    image_path = 'C:\\Users\\talha\\OneDrive\\Masaüstü\\Python-Programming-Lecture-Project\\Konsol1\\input\\deneme.png'  # Görüntü dosya yolu
     main(image_path)
