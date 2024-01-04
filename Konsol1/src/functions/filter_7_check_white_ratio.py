@@ -19,7 +19,7 @@ def filter_7_check_white_ratio(coords, image):
     roi = image[y_min:y_max, x_min:x_max]
 
     # Beyaz renk için alt ve üst sınır
-    lower_white = np.array([200, 200, 200], dtype=np.uint8)
+    lower_white = np.array([180, 180, 180], dtype=np.uint8)
     upper_white = np.array([255, 255, 255], dtype=np.uint8)
 
     # Belirli bir renk aralığındaki pikselleri maskele
