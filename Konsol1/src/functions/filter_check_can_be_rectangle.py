@@ -11,6 +11,6 @@ def filter_check_can_be_rectangle(coords):
     else:
         return False
 
-coords = [[0, 0], [1, 1], [2, 2], [3, 3]]
-result = filter_check_can_be_rectangle(coords)
-print(result)
+# coords = [[0, 0], [1, 1], [2, 2], [3, 3]]
+# result = filter_check_can_be_rectangle(coords)
+# print(result)

@@ -40,22 +40,4 @@ def filter_7_check_white_ratio(coords, image):
     else:
         return False
 
-# # Resmi yükle
-# image = cv2.imread('resim.png')  # Resmin dosya adını uygun şekilde değiştir
 
-# # Koordinatları tanımla
-# c1 = (x1, y1)
-# c2 = (x2, y2)
-# c3 = (x3, y3)
-# c4 = (x4, y4)
-
-# # Koordinatları birleştir
-# coords = (c1, c2, c3, c4)
-
-# # Fonksiyonu çağır ve sonucu kontrol et
-# result = filter_7_check_white_ratio(coords, image)
-
-# if result:
-#     print("ROI içindeki piksellerin %80'i beyazdır.")
-# else:
-#     print("ROI içindeki piksellerin %80'i beyaz değildir.")

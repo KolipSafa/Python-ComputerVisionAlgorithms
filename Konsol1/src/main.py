@@ -53,7 +53,7 @@ def draw_corners(image, corners):
     # Köşeleri beyaz renkte işaretle
     for corner in corners[0]:
         x, y = corner
-        cv2.circle(image, (x, y), 3, (0, 0, 255), -1)
+        cv2.circle(image, (x, y), 5, (0, 0, 255), 5)
 
 
 # Silindir tespiti fonksiyonu
@@ -81,92 +81,82 @@ def detect_cylinder(image):
         if filter_result is True:
             filtered_permutations.append(coords) 
             
-    # print("After Filter 1")
+    print("After Filter 1")
     print(len(filtered_permutations))
     #print(filtered_permutations)
 
     # Filter 2
     filtered_permutations_2 = []
     for coords in filtered_permutations:
-        # coords = [[0, 0], [1, 1], [2, 2], [3, 3]]
-        # coords[0] = [0, 0]
         distances = calculate_distances(coords)
         normalized_distances = normalize_distances(distances, INPUT_WIDTH)
-        filter_result_2 = filter_2_check_thresholds(normalized_distances, 0.4, 0.9, 0.2, 0.95)
+        filter_result_2 = filter_2_check_thresholds(normalized_distances, 0.2, 0.5, 0.2, 0.5)
         if filter_result_2 is True:
             filtered_permutations_2.append(coords) 
     
-    # print("After Filter 2")
+    print("After Filter 2")
     print(len(filtered_permutations_2))
     #print(filtered_permutations_2)
    
     # Filter 3
     filtered_permutations_3 = []
     for coords in filtered_permutations_2:
-        # coords = [[0, 0], [1, 1], [2, 2], [3, 3]]
-        # coords[0] = [0, 0]
-        filter_result_3 = filter_3_check_direction_thresholds(coords, 25, 0)
+        filter_result_3 = filter_3_check_direction_thresholds(coords, 10, 1)
         if filter_result_3 is True:
             filtered_permutations_3.append(coords) 
     
-    # print("After Filter 3")
+    print("After Filter 3")
     print(len(filtered_permutations_3))
     #print(filtered_permutations_3)
 
     # Filter 4
     filtered_permutations_4 = []
     for coords in filtered_permutations_3:
-        # coords = [[0, 0], [1, 1], [2, 2], [3, 3]]
-        # coords[0] = [0, 0]
         filter_result_4 = filter_4_check_paralel_thresholds(coords, 10)
         if filter_result_4 is True:
             filtered_permutations_4.append(coords) 
     
-    # print("After Filter 4")
+    print("After Filter 4")
     print(len(filtered_permutations_4))
     #print(filtered_permutations_4)
     
     # Filter 5
     filtered_permutations_5 = []
     for coords in filtered_permutations_4:
-        # coords = [[0, 0], [1, 1], [2, 2], [3, 3]]
-        # coords[0] = [0, 0]
         filter_result_5 = filter_5_check_paralel_horizontal_thresholds(coords, 1)
         if filter_result_5 is True:
             filtered_permutations_5.append(coords) 
     
-    # print("After Filter 5")
+    print("After Filter 5")
     print(len(filtered_permutations_5))
     #print(filtered_permutations_5)
     
     # Filter 6
     filtered_permutations_6 = []
     for coords in filtered_permutations_5:
-        # coords = [[0, 0], [1, 1], [2, 2], [3, 3]]
-        # coords[0] = [0, 0]
         distances_6 = calculate_distances(coords)
         normalized_distances_6 = normalize_distances(distances_6, INPUT_WIDTH)
         filter_result_6 = filter_6_check_size_ratio(normalized_distances_6, 0,100)
         if filter_result_6 is True:
             filtered_permutations_6.append(coords) 
     
-    # print("After Filter 6")
+    print("After Filter 6")
     print(len(filtered_permutations_6))
     print(filtered_permutations_6)
     
-    # Filter 7
-    #noktalar arasında kalan beyaz rengin oranı diğer renklere üstün olmalı
+    # # Filter 7
+    # #noktalar arasında kalan beyaz rengin oranı diğer renklere üstün olmalı
     # filtered_permutations_7 = []
     # for coords in filtered_permutations_6:
     #     # coords = [[0, 0], [1, 1], [2, 2], [3, 3]]
     #     # coords[0] = [0, 0]
-    #     filter_result_7 = filter_7_check_white_ratio(coords, 1,1)
+    #     filter_result_7 = filter_7_check_white_ratio(coords, )
     #     if filter_result_7 is True:
     #         filtered_permutations_7.append(coords)
 
     # print("After Filter 7")
-    #print(len(filtered_permutations_7))
-    #print(filtered_permutations_7)
+    # print(len(filtered_permutations_7))
+    # #print(filtered_permutations_7)
     
     after_filter_image = np.copy(preprocessed_image)
 
@@ -192,7 +182,8 @@ def detect_cylinder(image):
     draw_corners(after_filter_image, filtered_permutations_6)
 
     # Sonucu göster
-    cv2.imshow('Cylinder Detection Result', after_filter_image)
+    cv2.imshow("Cylinder Detect Result", after_filter_image)
+    cv2.imwrite('C:\\Users\\talha\\OneDrive\\Masaüstü\\Python-Programming-Lecture-Project\\Konsol1\\output\\result_deneme.png', after_filter_image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 

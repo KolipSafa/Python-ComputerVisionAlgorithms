@@ -13,7 +13,3 @@ def calculate_distances(coords):
     L41 = sqrt((x4 - x1)**2 + (y4 - y1)**2)
 
     return [L12, L23, L34, L41]
-
-# coords = [[0, 0], [1, 1], [2, 2], [3, 3]]
-# result = calculate_distances(coords)
-# print(result)

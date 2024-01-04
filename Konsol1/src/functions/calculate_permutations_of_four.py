@@ -7,7 +7,3 @@ def calculate_permutations_of_four(coords):
     return result
 
 
-coords = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4]]
-result = calculate_permutations_of_four(coords)
-print(len(result))
-print(result[1][0][0])
