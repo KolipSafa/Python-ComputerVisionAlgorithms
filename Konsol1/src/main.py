@@ -90,7 +90,7 @@ def detect_cylinder(image):
     for coords in filtered_permutations:
         distances = calculate_distances(coords)
         normalized_distances = normalize_distances(distances, INPUT_WIDTH)
-        filter_result_2 = filter_2_check_thresholds(normalized_distances, 0.2, 0.5, 0.2, 0.5)
+        filter_result_2 = filter_2_check_thresholds(normalized_distances, 0.1, 0.9, 0.1, 0.9)
         if filter_result_2 is True:
             filtered_permutations_2.append(coords) 
     
@@ -101,7 +101,7 @@ def detect_cylinder(image):
     # Filter 3
     filtered_permutations_3 = []
     for coords in filtered_permutations_2:
-        filter_result_3 = filter_3_check_direction_thresholds(coords, 10, 1)
+        filter_result_3 = filter_3_check_direction_thresholds(coords, 1000000, -100)
         if filter_result_3 is True:
             filtered_permutations_3.append(coords) 
     
@@ -112,7 +112,7 @@ def detect_cylinder(image):
     # Filter 4
     filtered_permutations_4 = []
     for coords in filtered_permutations_3:
-        filter_result_4 = filter_4_check_paralel_thresholds(coords, 10)
+        filter_result_4 = filter_4_check_paralel_thresholds(coords, 1)
         if filter_result_4 is True:
             filtered_permutations_4.append(coords) 
     
@@ -123,7 +123,7 @@ def detect_cylinder(image):
     # Filter 5
     filtered_permutations_5 = []
     for coords in filtered_permutations_4:
-        filter_result_5 = filter_5_check_paralel_horizontal_thresholds(coords, 1)
+        filter_result_5 = filter_5_check_paralel_horizontal_thresholds(coords, 100)
         if filter_result_5 is True:
             filtered_permutations_5.append(coords) 
     
@@ -136,7 +136,7 @@ def detect_cylinder(image):
     for coords in filtered_permutations_5:
         distances_6 = calculate_distances(coords)
         normalized_distances_6 = normalize_distances(distances_6, INPUT_WIDTH)
-        filter_result_6 = filter_6_check_size_ratio(normalized_distances_6, 0,100)
+        filter_result_6 = filter_6_check_size_ratio(normalized_distances_6, 0,1)
         if filter_result_6 is True:
             filtered_permutations_6.append(coords) 
     
@@ -183,12 +183,12 @@ def detect_cylinder(image):
 
     # Sonucu göster
     cv2.imshow("Cylinder Detect Result", after_filter_image)
-    cv2.imwrite('C:\\Users\\talha\\OneDrive\\Masaüstü\\Python-Programming-Lecture-Project\\Konsol1\\output\\result_deneme.png', after_filter_image)
+    cv2.imwrite(r'C:\Users\safak\Desktop\deneme104_result.png', after_filter_image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
 # Görüntüyü oku
-image = cv2.imread('C:\\Users\\talha\\OneDrive\\Masaüstü\\Python-Programming-Lecture-Project\\Konsol1\\input\\deneme.png')
+image = cv2.imread(r'C:\Users\safak\Desktop\104.png')
 # dosya yolu C:\\Users\\talha\\OneDrive\\Masaüstü\\Python-Programming-Lecture-Project\\Konsol1\\input\\kapi.png
 image = cv2.resize(image, (INPUT_WIDTH, INPUT_WIDTH))
 
