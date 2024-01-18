@@ -56,5 +56,5 @@ def main(image_path):
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    image_path = 'C:\\Users\\talha\\OneDrive\\Masaüstü\\Python-Programming-Lecture-Project\\Konsol1\\input\\1.jpg'  # Görüntü dosya yolu
+    image_path = r'C:\Users\safak\Desktop\104.png'  # Görüntü dosya yolu
     main(image_path)
