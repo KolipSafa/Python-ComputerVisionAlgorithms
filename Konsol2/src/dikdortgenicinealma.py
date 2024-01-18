@@ -25,7 +25,7 @@ def filter_edges_by_orientation(edges, orientation, angle_threshold=10):
     return filtered_edges
 
 # Görüntüyü oku
-image_path = r'C:\Users\safak\Desktop\yandan kirpilmis\30.jpg'
+image_path = r'C:\Users\safak\Desktop\yandan kirpilmis\29.jpg'
 image = cv2.imread(image_path)
 
 # Görüntüyü gri tonlamaya çevir

@@ -1,5 +1,7 @@
 import cv2
 import numpy as np
+from calculate_distances import calculate_distances
+
 
 def are_points_close(point1, point2, threshold=10):
     x1, y1 = point1
@@ -25,7 +27,7 @@ def filter_edges_by_orientation(edges, orientation, angle_threshold=10):
     return filtered_edges
 
 # Görüntüyü oku
-image_path = r'C:\Users\safak\Desktop\yandan kirpilmis\14.jpg'
+image_path = r'C:\Users\safak\Desktop\yandan kirpilmis\103.png'
 image = cv2.imread(image_path)
 
 # Görüntüyü gri tonlamaya çevir
@@ -45,7 +47,7 @@ smoothed_image = cv2.GaussianBlur(edges, kernel_size, sigma)
 rho = 1              # Dönüşüm parametre
 theta = np.pi / 180  # Dönüşüm parametre
 threshold = 30       # Eşik değeri
-min_line_length = 1  # Minimum çizgi uzunluğu
+min_line_length = 100  # Minimum çizgi uzunluğu
 max_line_gap = 5      # Maksimum boşluk
 
 # Hough dönüşümü uygula
@@ -53,7 +55,7 @@ lines = cv2.HoughLinesP(smoothed_image, rho, theta, threshold, np.array([]), min
 
 # Kenarları belirleyen çizgileri saklamak için boş bir liste oluştur
 detected_edges = []
-
+print(lines)
 # Hough dönüşümü sonuçlarını orijinal görüntü üzerine çiz ve uygun kenarları kaydet
 for line in lines:
     x1, y1, x2, y2 = line[0]
