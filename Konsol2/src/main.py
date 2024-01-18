@@ -4,6 +4,7 @@ import numpy as np
 from functions.filter_1_check_horizontal_thresholds import filter_1_check_horizontal_thresholds
 from functions.filter_2_check_vertical_thresholds import filter_2_check_vertical_thresholds
 from functions.filter_3_check_can_be_rectangle import filter_3_check_can_be_rectangle
+from functions.filter_4_check_length_ratios import filter_4_check_length_ratios
 from functions.draw_rectangle import draw_rectangle
 
 
@@ -104,7 +105,7 @@ def process_images_in_directory(directory_path, output_directory):
                 print(f"Hata oluştu: {e}")
                 continue  # Hata durumunda devam et
 
-input_path = "C:\\Users\\tkaan\\Documents\\GitHub\\Python-Programming-Lecture-Project\\Konsol2\\input\\input_tam\\"
-output_path = "C:\\Users\\tkaan\\Documents\\GitHub\\Python-Programming-Lecture-Project\\Konsol2\\output\\output_tam\\"
+input_path = r"C:\Users\talha\OneDrive\Masaüstü\Python-Programming-Lecture-Project\Konsol2\input"
+output_path = r"C:\Users\talha\OneDrive\Masaüstü\Python-Programming-Lecture-Project\Konsol2\output"
 
 process_images_in_directory(input_path, output_path)

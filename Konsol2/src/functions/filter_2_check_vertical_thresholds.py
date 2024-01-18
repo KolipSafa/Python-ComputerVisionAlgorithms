@@ -1,6 +1,6 @@
 import numpy as np
 
-def filter_2_check_vertical_thresholds(edges, angle_threshold=10):
+def filter_2_check_vertical_thresholds(edges, angle_thresholdDOWN = -10, angle_thresholdUP = 40):
     filtered_edges = []
 
     for edge in edges:
@@ -9,7 +9,7 @@ def filter_2_check_vertical_thresholds(edges, angle_threshold=10):
         angle = np.arctan([np.abs(x1 - x2)/(np.abs(y1 - y2)+5)])[0] * 180 / np.pi
 
         # Eğim aralığı kontrolü
-        if abs(angle) < angle_threshold:
+        if angle_thresholdDOWN < abs(angle) < angle_thresholdUP:
             filtered_edges.append(edge)
 
     return np.array(filtered_edges)
